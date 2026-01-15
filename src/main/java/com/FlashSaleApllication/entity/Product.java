@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "products")
 public class Product {
-
+    //Things which we want in the database
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,6 +14,7 @@ public class Product {
 
     private Integer stock;
 
+    //These are getters and setters for the product
     public void setId(Long id) {
         this.id = id;
     }

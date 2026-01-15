@@ -5,10 +5,11 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "orders")
 public class Order {
-
+    //Things which we want in the database
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     private Long productId;
 
@@ -16,6 +17,9 @@ public class Order {
 
     private String status;
 
+
+
+    //These are getters and setters for the Order
     public Long getId() {
         return id;
     }
@@ -48,5 +52,5 @@ public class Order {
         this.status = status;
     }
 
-    // getters & setters
+
 }

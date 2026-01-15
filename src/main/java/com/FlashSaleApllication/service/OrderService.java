@@ -1,7 +1,6 @@
 package com.FlashSaleApllication.service;
 
 
-
 import com.FlashSaleApllication.entity.Order;
 import com.FlashSaleApllication.exception.OutOfStockException;
 import com.FlashSaleApllication.repository.OrderRepository;
@@ -33,7 +32,7 @@ public class OrderService {
         Order order = new Order();
         order.setProductId(productId);
         order.setUserId(userId);
-        order.setStatus("CREATED");
+        order.setStatus("VYSHRAWAN");
 
         orderRepository.save(order);
     }

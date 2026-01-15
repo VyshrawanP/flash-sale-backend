@@ -3,6 +3,9 @@ package com.FlashSaleApllication.controller;
 
 
 import com.FlashSaleApllication.service.OrderService;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,13 +19,17 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping("/buy")
-    public ResponseEntity<String> buyProduct() {
+@PostMapping("/buy")
+public ResponseEntity<String> buy(HttpServletRequest request) {
 
-        Long productId = 1L; // flash sale product
-        Long userId = 100L;  // mock user
+    Long userId = (Long) request.getAttribute("userId");
 
-        orderService.placeOrder(productId, userId);
-        return ResponseEntity.ok("Order placed successfully");
+    if (userId == null) {
+        return ResponseEntity.status(401).body("Unauthorized");
     }
+
+    orderService.placeOrder(1L, userId);
+    return ResponseEntity.ok("Order placed");
+}
+
 }
