@@ -46,6 +46,11 @@ public class User {
         this.password = password;
     }
 
+    public static String getUserName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getUserName'");
+    }
+
 
 }
 

@@ -8,5 +8,7 @@ import com.FlashSaleApllication.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
+
+
 }
 

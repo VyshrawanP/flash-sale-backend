@@ -16,8 +16,17 @@ public class Order {
     private Long userId;
 
     private String status;
+    private String username;
 
 
+
+    public String getUserName() {
+        return username;
+    }
+
+    public void setUserName(String userName) {
+        this.username = userName;
+    }
 
     //These are getters and setters for the Order
     public Long getId() {

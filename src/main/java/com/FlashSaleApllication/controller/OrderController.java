@@ -24,6 +24,7 @@ public ResponseEntity<String> buy(HttpServletRequest request) {
 
     Long userId = (Long) request.getAttribute("userId");
 
+
     if (userId == null) {
         return ResponseEntity.status(401).body("Unauthorized");
     }

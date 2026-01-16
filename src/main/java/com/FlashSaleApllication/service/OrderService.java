@@ -5,11 +5,15 @@ import com.FlashSaleApllication.entity.Order;
 import com.FlashSaleApllication.exception.OutOfStockException;
 import com.FlashSaleApllication.repository.OrderRepository;
 import com.FlashSaleApllication.repository.ProductRepository;
+import com.FlashSaleApllication.repository.UserRepository;
+import com.FlashSaleApllication.entity.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.*;
 
 @Service
 public class OrderService {
+
+
 
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
@@ -18,6 +22,7 @@ public class OrderService {
                         OrderRepository orderRepository) {
         this.productRepository = productRepository;
         this.orderRepository = orderRepository;
+
     }
 
     @Transactional(isolation = Isolation.READ_COMMITTED)
@@ -32,7 +37,8 @@ public class OrderService {
         Order order = new Order();
         order.setProductId(productId);
         order.setUserId(userId);
-        order.setStatus("VYSHRAWAN");
+        order.setStatus("CREATED");
+
 
         orderRepository.save(order);
     }
