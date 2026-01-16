@@ -7,6 +7,9 @@ import com.FlashSaleApllication.repository.OrderRepository;
 import com.FlashSaleApllication.repository.ProductRepository;
 import com.FlashSaleApllication.repository.UserRepository;
 import com.FlashSaleApllication.entity.User;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.*;
 
@@ -24,6 +27,10 @@ public class OrderService {
         this.orderRepository = orderRepository;
 
     }
+    public List<Order> getOrdersForUser(Long userId) {
+    return orderRepository.findByUserId(userId);
+}
+
 
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void placeOrder(Long productId, Long userId) {
