@@ -12,7 +12,6 @@ import com.FlashSaleApllication.repository.UserRepository;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
 

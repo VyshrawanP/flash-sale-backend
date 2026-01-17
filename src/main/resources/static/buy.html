@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flash Sale - Buy</title>
+</head>
+<body>
+
+<h1>Buy Product</h1>
+
+<button onclick="buy()">Buy Product</button>
+<p id="msg"></p>
+
+<br>
+<a href="/orders.html">View My Orders</a>
+<br><br>
+<button onclick="logout()">Logout</button>
+
+<script>
+function buy() {
+  const token = localStorage.getItem("jwt");
+
+  fetch("/orders/buy", {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer " + token
+    }
+  })
+  .then(res => res.text())
+  .then(text => msg.innerText = text);
+}
+
+function logout() {
+  localStorage.removeItem("jwt");
+  window.location.href = "/index.html";
+}
+</script>
+
+</body>
+</html>

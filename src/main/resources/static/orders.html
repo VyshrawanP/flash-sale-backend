@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Orders</title>
+</head>
+<body>
+
+<h1>My Orders</h1>
+
+<button onclick="loadOrders()">Load Orders</button>
+<ul id="orders"></ul>
+
+<br>
+<a href="/buy.html">Back to Buy</a>
+
+<script>
+function loadOrders() {
+  const token = localStorage.getItem("jwt");
+
+  fetch("/orders/my-orders", {
+    headers: {
+      "Authorization": "Bearer " + token
+    }
+  })
+  .then(res => {
+    if (!res.ok) throw new Error("Unauthorized");
+    return res.json();
+  })
+  .then(data => {
+    orders.innerHTML = "";
+    data.forEach(o => {
+      const li = document.createElement("li");
+      li.innerText =
+        "Order ID: " + o.id +
+        " | Product: " + o.productId +
+        " | Status: " + o.status;
+      orders.appendChild(li);
+    });
+  })
+  .catch(err => {
+    orders.innerHTML = "<li>" + err.message + "</li>";
+  });
+}
+</script>
+
+</body>
+</html>

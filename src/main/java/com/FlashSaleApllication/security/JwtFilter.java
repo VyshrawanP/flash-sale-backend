@@ -37,7 +37,9 @@ public class JwtFilter extends OncePerRequestFilter {
                 Long userId = jwtUtil.extractUserId(token);
                 request.setAttribute("userId", userId);
             } catch (Exception e) {
-                // invalid token → ignore
+                response.setStatus(401);
+    response.getWriter().write("Invalid or expired token");
+     return;
             }
         }
 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flash Sale - Login</title>
+</head>
+<body>
+
+<h1>Flash Sale Application</h1>
+
+<h2>Register</h2>
+<input id="regUsername" placeholder="Username">
+<input id="regPassword" type="password" placeholder="Password">
+<button onclick="register()">Register</button>
+
+<h2>Login</h2>
+<input id="loginUsername" placeholder="Username">
+<input id="loginPassword" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+
+<script>
+function register() {
+  fetch("/auth/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: regUsername.value,
+      password: regPassword.value
+    })
+  })
+  .then(res => res.text())
+  .then(text => msg.innerText = text);
+}
+
+function login() {
+  fetch("/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: loginUsername.value,
+      password: loginPassword.value
+    })
+  })
+  .then(res => {
+    if (!res.ok) throw new Error("Login failed");
+    return res.text();
+  })
+  .then(token => {
+    localStorage.setItem("jwt", token);
+    window.location.href = "/buy.html";
+  })
+  .catch(err => msg.innerText = err.message);
+}
+</script>
+
+</body>
+</html>
